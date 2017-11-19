@@ -1,10 +1,13 @@
 var http = require('http')
 var https = require('https')
 
-function HTTPServer(ipOrHostname, port, responseCallback, sslConfig) {
+function HTTPServer(ipOrHostname, port, responseCallback, sslKey, sslCrt) {
     this.ipOrHostname = ipOrHostname
     this.port = port
-    this.sslConfig = sslConfig
+    this.sslConfig = {
+        key: sslKey,
+        cert: sslCrt
+    }
 
     this.server = http.createServer(sslConfig, (req, res) => {
         res.statusCode = 200
@@ -19,3 +22,5 @@ HTTPServer.prototype.start = function() {
         console.log(`HTTPServer running at http://${this.ipOrHostname}:${this.port}/`)
     })
 }
+
+module.exports = HTTPServer
