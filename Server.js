@@ -28,7 +28,8 @@ function Server(options) {
             return JSON.stringify(this.getServerListing())
         },
         // ssl config
-        options.sslConfig
+        options.sslKey,
+        options.sslCrt
     )
 
     this.cachedListing = []
