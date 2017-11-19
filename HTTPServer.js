@@ -1,4 +1,3 @@
-var http = require('http')
 var https = require('https')
 
 function HTTPServer(ipOrHostname, port, responseCallback, sslKey, sslCrt) {
@@ -9,7 +8,7 @@ function HTTPServer(ipOrHostname, port, responseCallback, sslKey, sslCrt) {
         cert: sslCrt
     }
 
-    this.server = http.createServer(this.sslConfig, (req, res) => {
+    this.server = https.createServer(this.sslConfig, (req, res) => {
         res.statusCode = 200
         res.setHeader('Access-Control-Allow-Origin', '*')
         res.setHeader('Content-Type', 'application/json')
